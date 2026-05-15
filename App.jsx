@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 import HeroSection from './components/HeroSection';
 import AnimatedBackground from './components/AnimatedBackground';
@@ -25,27 +26,27 @@ setVerdict('VERY LIKELY FAKE');
 };
 
 return (
+    <main>
+      <AnimatedBackground />
 
-  <AnimatedBackground />
+      <HeroSection />
 
-  <HeroSection />
+      <AnalysisForm onAnalyze={handleAnalyze} />
 
-  <AnalysisForm onAnalyze={handleAnalyze} />
+      <section className="max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-8 pb-20">
 
-  <section className="max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-8 pb-20">
+        <RiskScoreCard
+          score={score}
+          verdict={verdict}
+        />
 
-    <RiskScoreCard
-      score={score}
-      verdict={verdict}
-    />
+        <AIConsole logs={logs} />
 
-    <AIConsole logs={logs} />
+      </section>
 
-  </section>
-
-  <Footer />
-
-</main>
-);
+      <Footer />
+      <SpeedInsights />
+    </main>
+  );
 }
 
